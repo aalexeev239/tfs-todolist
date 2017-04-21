@@ -1,0 +1,31 @@
+<form novalidate #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+  <label>
+    <span>Ваше имя</span>
+    <input
+      type="text"
+      placeholder="просто имя, без фамилии"
+      name="name"
+      [(ngModel)]="user.name">
+  </label>
+  <!--!!!-->
+  <div ngModelGroup="info">
+    <label>
+      <span>Электропочта</span>
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="user.info.email">
+    </label>
+    <label>
+      <span>Подтвердите электропочту</span>
+      <input
+        type="email"
+        name="confirm"
+        [(ngModel)]="user.info.confirm">
+    </label>
+  </div>
+  <button type="submit">Жмяк!</button>
+</form>
+<br>
+<pre><b>f.value: </b>{{f.value | json}}</pre>
+<pre><b>user: </b>{{user | json}}</pre>

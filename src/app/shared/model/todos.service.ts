@@ -10,19 +10,22 @@ export class TodosService {
 
   private todos: ITodo[] = [
     {
+      key: '0',
       name: 'Позвонить в сервис',
-      status: TodoStatus.TODO,
-      time: new Date()
+      status: TodoStatus.TODO
     },
     {
+      key: '1',
       name: 'Купить хлеб',
       status: TodoStatus.TODO
     },
     {
+      key: '2',
       name: 'Захватить мир',
       status: TodoStatus.DONE
     },
     {
+      key: '3',
       name: 'Добавить тудушку в список',
       status: TodoStatus.TODO
     }
@@ -60,6 +63,7 @@ export class TodosService {
 
   static createNewTodo(name: string): ITodo {
     return {
+      key: '',
       name,
       status: TodoStatus.TODO
     };

@@ -1,0 +1,84 @@
+<form novalidate #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+  <label>
+    <span>Ваше имя</span>
+    <input
+      type="text"
+      placeholder="просто имя, без фамилии"
+      name="name"
+      [(ngModel)]="user.name"
+      required
+      minlength="3"
+    >
+    <div class="error" *ngIf="f.controls.name?.touched && f.controls.name?.errors?.required">
+      Имя обязательно
+    </div>
+    <div class="error" *ngIf="f.controls.name?.touched && f.controls.name?.errors?.minlength">
+      Как минимум 3 символа
+    </div>
+  </label>
+  <div ngModelGroup="info">
+    <label>
+      <span>Электропочта</span>
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="user.info.email"
+        #email="ngModel"
+        required
+      >
+      <div
+        class="error"
+        *ngIf="email.touched && email.errors?.required">
+        Электропочта обязательна
+      </div>
+    </label>
+    <label>
+      <span>Подтвердите электропочту</span>
+      <input
+        type="email"
+        name="confirm"
+        [(ngModel)]="user.info.confirm"
+        #confirm="ngModel"
+        validateEqual="info.email"
+        required
+      >
+      <div
+        class="error"
+        *ngIf="confirm.touched && confirm.errors?.required">
+        Подтверждение обязательно
+      </div>
+      <div
+        class="error"
+        *ngIf="confirm.touched && confirm.errors?.equal">
+        Электропочты должны совпадать
+      </div>
+    </label>
+  </div>
+  <button type="submit" [disabled]="f.invalid">Жмяк!</button>
+</form>
+
+<pre>f.value: {{f.value | json}}</pre>
+<pre>{{confirm.errors | json}}</pre>
+
+<table>
+  <tr>
+    <th>Состояние</th>
+    <th>Если true</th>
+    <th>Если false</th>
+  </tr>
+  <tr>
+    <td>Контрол был посещен.</td>
+    <td><code>ng-touched</code></td>
+    <td><code>ng-untouched</code></td>
+  </tr>
+  <tr>
+    <td>Изменилось значение контрола.</td>
+    <td><code>ng-dirty</code></td>
+    <td><code>ng-pristine</code></td>
+  </tr>
+  <tr>
+    <td>Значение контрола валидно.</td>
+    <td><code>ng-valid</code></td>
+    <td><code>ng-invalid</code></td>
+  </tr>
+</table>

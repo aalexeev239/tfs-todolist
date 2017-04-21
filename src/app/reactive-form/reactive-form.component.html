@@ -1,0 +1,46 @@
+<form novalidate (ngSubmit)="onSubmit(form)" [formGroup]="form">
+  <label>
+    <span>Ваше имя</span>
+    <input
+      type="text"
+      placeholder="просто имя, без фамилии"
+      formControlName="name">
+  </label>
+  <div class="error" *ngIf="form.controls.name?.touched && form.controls.name?.errors?.required">
+    Имя обязательно
+  </div>
+  <div class="error" *ngIf="form.controls.name?.touched && form.controls.name?.errors?.minlength">
+    Как минимум 2 символа
+  </div>
+  <div formGroupName="info">
+    <label>
+      <span>Электропочта</span>
+      <input type="email" formControlName="email">
+    </label>
+    <div class="error"
+         *ngIf="form.get('info').get('email').touched &&
+                form.get('info').get('email').hasError('required')">
+      Электропочта обязательна
+    </div>
+    <div class="error"
+         *ngIf="form.get('info').get('email').touched &&
+                form.get('info').get('email').hasError('email')">
+      Электропочта неверного формата
+    </div>
+    <label>
+      <span>Подтвердите электропочту</span>
+      <input type="email" formControlName="confirm">
+    </label>
+    <div class="error"
+         *ngIf="form.get(['info', 'confirm']).touched &&
+                form.get(['info', 'confirm']).hasError('required')">
+      Подтверждение обязательно
+    </div>
+  </div>
+  <button type="submit" [disabled]="form.invalid">Жмяк!</button>
+</form>
+Валидность: {{form.valid}}
+<br>
+{{form.value | json}}
+<br>
+{{form.get(['info','confirm'])?.errors | json }}

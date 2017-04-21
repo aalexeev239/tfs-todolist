@@ -1,0 +1,22 @@
+<form novalidate [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <label>
+    <span>Ваше имя</span>
+    <input
+      type="text"
+      placeholder="просто имя, без фамилии"
+      formControlName="name">
+  </label>
+  <div formGroupName="info">
+    <label>
+      <span>Электропочта</span>
+      <input type="email" formControlName="email">
+    </label>
+    <label>
+      <span>Подтвердите электропочту</span>
+      <input type="email" formControlName="confirm">
+    </label>
+  </div>
+  <button type="submit" [disabled]="form.invalid">Жмяк!</button>
+</form>
+
+<pre><b>f.value: </b>{{form.value | json}}</pre>
