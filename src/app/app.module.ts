@@ -16,7 +16,7 @@ import {DiNestedService} from "./di/di-nested.service";
 import {TodosService} from "./shared/model/todos.service";
 import {TodosAsyncService} from "./shared/model/todos-async.service";
 import {TemplateFormComponent} from './template-form/template-form.component';
-import {ReactiveFormComponent} from './reactive-form/reactive-form.component';
+// import {ReactiveFormComponent} from './reactive-form/reactive-form.component';
 
 
 @NgModule({
@@ -29,8 +29,9 @@ import {ReactiveFormComponent} from './reactive-form/reactive-form.component';
     FiltersComponent,
     Example1Component,
     Example2Component,
-    TemplateFormComponent,
-    ReactiveFormComponent
+    TemplateFormComponent
+    // ,
+    // ReactiveFormComponent
   ],
   imports: [
     BrowserModule,
